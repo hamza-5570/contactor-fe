@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body
+{
+    background-color: #f0f4f8;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+.Dropdown-control
+{
+    border-radius: 10px !important;
+    border: 1px solid #B8BED9 !important;
+    color: #B8BED9 !important;
+    padding: 5px 45px 5px 10px !important;
+}
+
+.main div
+{
+height: 0px !important;
+}
+
+.canvasjs-chart-canvas
+{
+    height: 60px !important;
+    width: 250px !important;
+}
+
+.canvasjs-chart-credit
+{
+    display: none !important;
+}
+
+.apexcharts-toolbar
+{
+    display: none !important;
+}
+
+
+.apexcharts-legend 
+{
+    display: none !important;
+}
+
+ul .health
+{
+    list-style-type: circle;
+    color: #FF9A2D;    /* Change to your desired color */
+}
+ul .health2
+{
+    list-style-type: circle;
+    color: #FB67CA;    /* Change to your desired color */
+}
+
+ul .health3
+{
+    list-style-type: circle;
+    color: #494892;    /* Change to your desired color */
+}
+
+ul .health4
+{
+    list-style-type: circle;
+    color: #63D2F5;    /* Change to your desired color */
+}
+
+ul .health5
+{
+    list-style-type: circle;
+    color: #9B88ED;    /* Change to your desired color */
+}
+
+.bg
+{
+    background-image: url(./assets/png/sign_in.png);
+    background-repeat: no-repeat;
+    height: 100vh;
+    background-size: cover;
+}
+
+
+@media (max-width: 1024px) {
+
+    .canvasjs-chart-canvas
+{
+    height: 50px !important;
+    width: 150px !important;
+    margin-left: 50px !important;
+}
+}
+
+@media screen and (max-width: 600px) {
+    .table-container {
+        overflow-x: auto;
+        width: 100vh;
+    }
+
+}
+
+@media screen and (max-width: 1023px) {
+    .bg
+    {
+        background-image: none !important;
+        
+    }
+    .mobile-bg
+    {
+        background:linear-gradient(90deg, #B564FF 0%, #72AEFF 100%) !important;
+        height: 100% !important;
+        padding-bottom: 40px  !important;
+    }
+}
