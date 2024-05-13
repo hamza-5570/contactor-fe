@@ -7,9 +7,57 @@ body
     background-color: #f0f4f8;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     display: none;
+} */
+
+/* Styles for the scrollbar track (part the thumb slides within) */
+::-webkit-scrollbar {
+    width: 5px; /* width of the entire scrollbar */
+    height: 5px; /* height of the entire scrollbar */
 }
+
+/* Styles for the draggable part of the scrollbar */
+::-webkit-scrollbar-thumb {
+    background: rgba(59, 50, 239, 0.7); /* color of the thumb */
+    border-radius: 5px; /* roundness of the ends */
+}
+
+/* Styles for the part of the scrollbar track that is not being interacted with */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* color of the track */
+    border-radius: 5px; /* roundness of the ends */
+}
+
+/* Add to your CSS file or <style> section */
+.scrollable-container {
+    overflow-x: auto;
+    width: 100%; /* Adjust width as necessary */
+  }
+  
+  .table-auto {
+    width: 100%; /* Make sure table layout is auto or fixed based on your requirements */
+    border-collapse: collapse; /* Optional: for styling */
+  }
+  
+  .sticky-col {
+    position: sticky;
+    right: 0;
+    background-color: white; /* Ensures the sticky column is not transparent */
+    z-index: 1; /* Make sure sticky column stays on top during horizontal scroll */
+    width: auto !important;
+  }
+
+  .sticky-cols {
+    position: sticky;
+    right: 0;
+    background-color: #BFD5FF; /* Ensures the sticky column is not transparent */
+    z-index: 1; /* Make sure sticky column stays on top during horizontal scroll */
+    width: auto !important;
+  }
+
+  
+  
 
 
 .Dropdown-control

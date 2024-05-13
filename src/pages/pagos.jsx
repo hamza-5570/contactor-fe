@@ -7,17 +7,17 @@ import axiosClient from "../connection";
 import DeleteIcon from "../assets/png/delete-icon.png";
 import EditIcon from "../assets/png/edit-icon.png";
 
-export default function Landing() {
+export default function Pagos() {
   let navigate = useNavigate();
   const [contactorList, setContactorList] = useState([]);
 
   const onUpdate = async (id) => {
-    navigate(`/addNew?id=${id}`);
+    navigate(`/addNewPagos?id=${id}`);
   };
 
   const onDelete = async (id) => {
     axiosClient()
-      .delete(`/corporate/deleteCorporate/${id}`)
+      .delete(`/pagos/deletePayment/${id}`)
       .then(async (res) => {
         await setContactorList(contactorList.filter((item) => item._id !== id));
       })
@@ -27,7 +27,7 @@ export default function Landing() {
   };
   useEffect(() => {
     axiosClient()
-      .get("/corporate/getAllCorporate")
+      .get("/pagos/getAllPayment")
       .then(async (res) => {
         await setContactorList(res.data.data);
       })
@@ -42,19 +42,30 @@ export default function Landing() {
       accessor: "_manualId", // This doesn't need to match any data property since it's manually generated
       Cell: ({ rowIndex }) => rowIndex + 1, // Ensure this uses `rowIndex`
     },
+    {
+      Header: "NOMBRE",
+      accessor: (item) => (item.corporate ? item.corporate.name : ""),
+    },
     ,
-    { Header: "NOMBRE", accessor: "name" },
-    { Header: "SSN OR EIN", accessor: "employer_identification_number" },
-    { Header: "INDIRIZZO POSTALE", accessor: "postal_address" },
-    { Header: "TELEFONO", accessor: "telephone" },
-    { Header: "DATA DI NASCITA", accessor: "date_of_birth" },
-    { Header: "TIPI", accessor: "types" },
+    {
+      Header: "PAGO DE SERVICIOS PRESTADOS",
+      accessor: "professional_services_payment",
+    },
+    {
+      Header: "RETENCION DE SERVICIOS PRESTADOS",
+      accessor: "retention_professional_services",
+    },
+    { Header: "GROSS PAY RETENTION", accessor: "net_pay" },
+    { Header: "GASTOS REEMBOLSADOS", accessor: "reimbursable_expenses" },
+    { Header: "DIVIDENDOS", accessor: "dividens" },
+    { Header: "RETENCIÓN DE DIVIDENDOS", accessor: "dividens_retention" },
+    { Header: "OTROS PAGOS", accessor: "other_payments" },
     {
       Header: "AZIONE",
       accessor: "actions",
       Cell: (row) => (
         <>
-          <div className="flex gap-2">
+          <div className="flex gap-2 ">
             <button
               onClick={() => onDelete(row.row._id)}
               className="flex items-center justify-center  w-8 h-8 rounded-md bg-[#dc2727] text-white hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300"
@@ -90,7 +101,7 @@ export default function Landing() {
               <button
                 type="submit"
                 onClick={() => {
-                  navigate("/addNew");
+                  navigate("/addNewPagos");
                 }}
                 className="mb-4 mt-5 w-[20%] md:mt-8 font-inter font-[700] text-[15px] bg-[#8D6AFF] rounded-lg py-2 px-10 block ml-auto text-white"
               >
@@ -99,7 +110,7 @@ export default function Landing() {
               <BenefitTable
                 columns={columns}
                 data={contactorList}
-                width={"1000px"}
+                width={"1500px"}
               />
             </div>
           </div>

@@ -17,7 +17,6 @@ export default function Navbar() {
       <div className="bg-[#6D67EB]">
         <div className="grid grid-cols-2 w-[95%] mx-auto py-5">
           <div className="flex justify-between">
-
             <p className="block lg:hidden font-inter font-[700] text-[25px] xl:text-[35px] text-white text-center">
               SigProS
             </p>
@@ -139,9 +138,7 @@ export default function Navbar() {
                         </p>
 
                         <p
-                          onClick={() =>
-                            handleNavigate("/CONTRATISTAS/SUPLIDORES")
-                          }
+                          onClick={() => handleNavigate("/Dashboard")}
                           className="mt-10 flex cursor-pointer gap-2 font-[500] text-[15px]  text-white"
                         >
                           CONTRATISTAS/SUPLIDORES

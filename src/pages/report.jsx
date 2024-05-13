@@ -105,9 +105,7 @@ export default function Report() {
                   {/* <DonutChart /> */}
                 </div>
               </div>
-              <div>
-                {/* <BarChart /> */}
-              </div>
+              <div>{/* <BarChart /> */}</div>
             </div>
           </div>
         </div>
