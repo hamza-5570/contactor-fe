@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../component/sidebar";
 import Navbar from "../component/navbar";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axiosClient from "../connection";
+import { toast } from "react-toastify";
 
 export default function AddNew() {
+  let navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const id = queryParams.get("id");
@@ -45,7 +47,8 @@ export default function AddNew() {
       axiosClient()
         .put(`/pagos/updatePayment/${id}`, payment)
         .then((res) => {
-          console.log(res);
+          toast.success(res.data.message);
+          navigate("/Pagos");
         })
         .catch((err) => {
           console.log(err);

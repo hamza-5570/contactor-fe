@@ -13,7 +13,6 @@ import AddNew from "./pages/addNew";
 import Pagos from "./pages/pagos";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 function App() {
   return (
     <>

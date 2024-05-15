@@ -1,9 +1,6 @@
 import React from "react";
 import Sidebar from "../component/sidebar";
 import Navbar from "../component/navbar";
-import LineGraphs from "../component/linegraph";
-import DonutChart from "../component/pie-chart";
-import BarChart from "../component/barchart";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 

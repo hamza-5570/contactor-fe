@@ -5,7 +5,9 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { Breadcrumb } from "flowbite-react";
+import { HiHome } from "react-icons/hi";
+import Breadcrumbs from "./breadcrumbs";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   let navigate = useNavigate();
@@ -20,27 +22,7 @@ export default function Navbar() {
             <p className="block lg:hidden font-inter font-[700] text-[25px] xl:text-[35px] text-white text-center">
               SigProS
             </p>
-            <div className="hidden lg:block relative">
-              <input
-                type="text"
-                placeholder="Rechercher"
-                className="font-[500] font-inter text-[14px] text-[#BFBFBF] py-2 px-8 rounded-md"
-              />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-4 h-4 text-[#BFBFBF] absolute top-3 left-2"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                />
-              </svg>
-            </div>
+            <Breadcrumbs />
           </div>
 
           <div className="self-center gap-2 lg:gap-5 flex justify-end ">

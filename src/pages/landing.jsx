@@ -6,35 +6,71 @@ import { Link, useNavigate } from "react-router-dom";
 import axiosClient from "../connection";
 import DeleteIcon from "../assets/png/delete-icon.png";
 import EditIcon from "../assets/png/edit-icon.png";
-
+import DateInput from "../component/dateInputWithClear";
+import { toast } from "react-toastify";
+import { t } from "i18next";
 export default function Landing() {
   let navigate = useNavigate();
-  const [contactorList, setContactorList] = useState([]);
+  const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
+  const [isFocused, setFocused] = useState(false);
+  const [dateValue, setDateValue] = useState("");
+
+  const handleFocus = () => setFocused(true);
+  const handleBlur = () => setFocused(dateValue.length !== 0);
 
   const onUpdate = async (id) => {
     navigate(`/addNew?id=${id}`);
   };
 
   const onDelete = async (id) => {
-    axiosClient()
+    await axiosClient()
       .delete(`/corporate/deleteCorporate/${id}`)
       .then(async (res) => {
-        await setContactorList(contactorList.filter((item) => item._id !== id));
+        await setData(data.filter((item) => item._id !== id));
+        await setFilteredData(filteredData.filter((item) => item._id !== id));
+        toast.success(res.data.message);
       })
       .catch((err) => {
         console.log(err);
+        toast.error(err.response.data.message);
       });
+  };
+
+  const handleSearch = (e) => {
+    console.log(e.target.value);
   };
   useEffect(() => {
     axiosClient()
       .get("/corporate/getAllCorporate")
       .then(async (res) => {
-        await setContactorList(res.data.data);
+        console.log(res.data.data);
+        setData(res.data.data);
+        setFilteredData(res.data.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+
+  useEffect(() => {
+    const filtered = data.filter((item) => {
+      const nameMatches = item.name
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+      const creationDate = new Date(item.createdAt); // Converts UTC date to local time
+      const startDate = fromDate
+        ? new Date(fromDate + "T00:00:00Z")
+        : new Date("1970-01-01T00:00:00Z");
+      const endDate = toDate ? new Date(toDate + "T23:59:59Z") : new Date();
+      const dateMatches = creationDate >= startDate && creationDate <= endDate;
+      return nameMatches && dateMatches;
+    });
+    setFilteredData(filtered);
+  }, [searchTerm, fromDate, toDate, data]);
 
   const columns = [
     {
@@ -85,20 +121,62 @@ export default function Landing() {
           <div className="bg-[#f0f4f8] h-full">
             <div className="w-[90%] mx-auto py-10">
               <p className="font-inter font-[700] text-[16px] md:text-[25px] text-black text-center">
-                DROP DOWN WITH THE SUPPLIERS OR CONTRACTORS
+                CONTRATISTAS / SUPLIDORES
               </p>
-              <button
-                type="submit"
-                onClick={() => {
-                  navigate("/addNew");
-                }}
-                className="mb-4 mt-5 w-[20%] md:mt-8 font-inter font-[700] text-[15px] bg-[#8D6AFF] rounded-lg py-2 px-10 block ml-auto text-white"
-              >
-                Entregar
-              </button>
+              <div className="flex justify-end gap-5 mt-5 md:mt-8 mb-4">
+                <div className="hidden lg:block relative">
+                  <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    placeholder="ricerca per nome"
+                    className="font-[500] font-inter text-[14px] text-[#BFBFBF] py-2 px-8 rounded-md"
+                  />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-4 h-4 text-[#BFBFBF] absolute top-3 left-2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                    />
+                  </svg>
+                </div>
+                <div className="hidden lg:block relative">
+                  <DateInput
+                    id="fromDate"
+                    label="From:"
+                    value={fromDate}
+                    onChange={(e) => setFromDate(e.target.value)}
+                  />
+                </div>
+                <div className="hidden lg:block relative">
+                  <DateInput
+                    id="toDate"
+                    label="To:"
+                    value={toDate}
+                    onChange={(e) => setToDate(e.target.value)}
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  onClick={() => {
+                    navigate("/addNew");
+                  }}
+                  className="w-[20%]  font-inter font-[700] text-[15px] bg-[#8D6AFF] rounded-lg py-2 px-10 text-white"
+                >
+                  Aggiungere
+                </button>
+              </div>
               <BenefitTable
                 columns={columns}
-                data={contactorList}
+                data={filteredData}
                 width={"1000px"}
               />
             </div>
