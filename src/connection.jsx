@@ -1,5 +1,5 @@
 import axios from "axios";
-let BASE_URL = "http://localhost:38000";
+let BASE_URL = "https://contractor-be-825bce3edc7c.herokuapp.com";
 
 export default function axiosClient() {
   let defaultOptions = {
