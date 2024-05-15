@@ -52,15 +52,18 @@ export default function AddNew() {
         })
         .catch((err) => {
           console.log(err);
+          toast.error(err.response.data.message);
         });
     } else {
       axiosClient()
         .post("/pagos/addPayment", payment)
         .then((res) => {
           console.log(res);
+          toast.success(res.data.message);
         })
         .catch((err) => {
           console.log(err);
+          toast.error(err.response.data.message);
         });
     }
   };
@@ -124,7 +127,7 @@ export default function AddNew() {
                           CORPORACION O INDIVIDUO
                         </option>
                       )}
-                      {corporates.map((corporate) => (
+                      {corporates?.map((corporate) => (
                         <option key={corporate._id} value={corporate._id}>
                           {corporate.name}
                         </option>

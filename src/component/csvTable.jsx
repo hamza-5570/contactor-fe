@@ -9,12 +9,14 @@ const CSVExportComponent = ({ data, columns }) => {
     );
 
     // Generate CSV header
-    const csvHeader = filteredColumns.map((col) => `"${col.Header}"`).join(",");
+    const csvHeader = filteredColumns
+      ?.map((col) => `"${col.Header}"`)
+      .join(",");
 
     // Generate CSV rows from data
-    const csvRows = data.map((row) => {
+    const csvRows = data?.map((row) => {
       return filteredColumns
-        .map((col) => {
+        ?.map((col) => {
           // Check if accessor is a function, if so, use it to get the value, otherwise access directly
           const cellValue =
             typeof col.accessor === "function"

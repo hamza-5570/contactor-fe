@@ -17,7 +17,7 @@ export default function BenefitTable({ columns, data, width }) {
           <table className="table-auto w-full">
             <thead className="px-5 py-3">
               <tr className="bg-[#BFD5FF]">
-                {columns.map((column, index) => (
+                {columns?.map((column, index) => (
                   <th
                     key={index}
                     className={`pl-3 ${
@@ -30,9 +30,9 @@ export default function BenefitTable({ columns, data, width }) {
               </tr>
             </thead>
             <tbody>
-              {data.map((row, rowIndex) => (
+              {data?.map((row, rowIndex) => (
                 <tr className="bg-white" key={rowIndex}>
-                  {columns.map((column, colIndex) => {
+                  {columns?.map((column, colIndex) => {
                     const cellValue =
                       typeof column.accessor === "function"
                         ? column.accessor(row)

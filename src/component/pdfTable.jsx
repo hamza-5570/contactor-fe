@@ -9,8 +9,8 @@ const PDFExportComponent = ({ data, columns }) => {
 
     // Filter columns to exclude the 'actions' and handle other columns appropriately
     const tableColumns = columns
-      .filter((col) => col.accessor !== "actions")
-      .map((col) => ({
+      ?.filter((col) => col.accessor !== "actions")
+      ?.map((col) => ({
         title: col.Header,
         dataKey:
           col.accessor === "_manualId"
@@ -21,7 +21,7 @@ const PDFExportComponent = ({ data, columns }) => {
       }));
 
     // Prepare data for the PDF, including the manual ID
-    const tableRows = data.map((item, index) => {
+    const tableRows = data?.map((item, index) => {
       const row = {};
       columns.forEach((col) => {
         if (col.accessor === "_manualId") {
