@@ -36,7 +36,7 @@ export default function Signin() {
         </div>
         <div className="self-center mt-5 md:mt-10">
           <p className="font-inter font-[700] text-[25px] md:text-[35px] text-black text-center">
-            SigProS
+            Para ti
           </p>
           <div className="bg-white  rounded-xl  md:w-[80%] lg:w-[50%] 2xl:w-[30%] mx-auto py-10 my-5">
             <p className="font-inter font-[700] text-[20px] md:text-[30px] text-black text-center">

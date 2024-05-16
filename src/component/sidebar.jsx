@@ -18,7 +18,7 @@ export default function Sidebar() {
           onClick={() => handleNavigate("/")}
           className="font-inter font-[700] text-[25px] xl:text-[35px] text-white text-center"
         >
-          SigProS
+          Para ti
         </p>
 
         <div className="xl:pl-5  mt-14 xl:mt-14">

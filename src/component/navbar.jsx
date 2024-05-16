@@ -20,7 +20,7 @@ export default function Navbar() {
         <div className="grid grid-cols-2 w-[95%] mx-auto py-5">
           <div className="flex justify-between">
             <p className="block lg:hidden font-inter font-[700] text-[25px] xl:text-[35px] text-white text-center">
-              SigProS
+              Para ti
             </p>
             <Breadcrumbs />
           </div>
@@ -116,7 +116,7 @@ export default function Navbar() {
                     <div className="flex h-full flex-col overflow-y-scroll bg-[#6D67EB] py-3 shadow-xl">
                       <div class="container grid grid-cols-1 p-3">
                         <p className="font-inter font-[700] text-[25px] text-white text-center">
-                          SigProS
+                          Para ti
                         </p>
 
                         <p

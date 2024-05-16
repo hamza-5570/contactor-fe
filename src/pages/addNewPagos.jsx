@@ -60,6 +60,7 @@ export default function AddNew() {
         .then((res) => {
           console.log(res);
           toast.success(res.data.message);
+          navigate("/Pagos");
         })
         .catch((err) => {
           console.log(err);
