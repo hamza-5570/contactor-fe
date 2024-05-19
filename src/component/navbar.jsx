@@ -44,7 +44,7 @@ export default function Navbar() {
               <img src={Profile} alt="" />
               <p className="hidden lg:block font-inter font-[400] text-[14px] text-white">
                 {/* Someone */}
-                Quelqu’un
+                Admin
               </p>
               <svg
                 onClick={() => setOpen(true)}
