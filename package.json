@@ -43,6 +43,7 @@
     "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1",
     "react-slick": "^0.29.0",
+    "react-spinners": "^0.13.8",
     "react-tailwind-timeline-component": "^1.1.2",
     "react-theme-context": "^2.0.1",
     "react-toastify": "^10.0.5",

@@ -20,15 +20,17 @@ export default function Pagos() {
   };
 
   const onDelete = async (id) => {
-    axiosClient()
-      .delete(`/pagos/deletePayment/${id}`)
-      .then(async (res) => {
-        await setData(data.filter((item) => item._id !== id));
-        await setFilteredData(filteredData.filter((item) => item._id !== id));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (window.confirm("Are you sure you want to delete this item?")) {
+      axiosClient()
+        .delete(`/pagos/deletePayment/${id}`)
+        .then(async (res) => {
+          await setData(data.filter((item) => item._id !== id));
+          await setFilteredData(filteredData.filter((item) => item._id !== id));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
   useEffect(() => {
     axiosClient()
@@ -61,7 +63,7 @@ export default function Pagos() {
 
   const columns = [
     {
-      Header: "IDENTITA",
+      Header: "IDENTIFICACIÓN",
       accessor: "_manualId", // This doesn't need to match any data property since it's manually generated
       Cell: ({ rowIndex }) => rowIndex + 1, // Ensure this uses `rowIndex`
     },
@@ -78,13 +80,13 @@ export default function Pagos() {
       Header: "RETENCION DE SERVICIOS PRESTADOS",
       accessor: "retention_professional_services",
     },
-    { Header: "GROSS PAY RETENTION", accessor: "net_pay" },
+    { Header: "SALARIO NETO", accessor: "net_pay" },
     { Header: "GASTOS REEMBOLSADOS", accessor: "reimbursable_expenses" },
     { Header: "DIVIDENDOS", accessor: "dividens" },
     { Header: "RETENCIÓN DE DIVIDENDOS", accessor: "dividens_retention" },
     { Header: "OTROS PAGOS", accessor: "other_payments" },
     {
-      Header: "AZIONE",
+      Header: "ACCIÓN",
       accessor: "actions",
       Cell: (row) => (
         <>
@@ -127,7 +129,7 @@ export default function Pagos() {
                     type="text"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="ricerca per nome"
+                    placeholder="BUSCAR POR NOMBRE"
                     className="font-[500] font-inter text-[14px] text-[#BFBFBF] py-2 px-8 rounded-md"
                   />
                   <svg
@@ -148,7 +150,7 @@ export default function Pagos() {
                 <div className="hidden lg:block relative">
                   <DateInput
                     id="fromDate"
-                    label="From:"
+                    label="de:"
                     value={fromDate}
                     onChange={(e) => setFromDate(e.target.value)}
                   />
@@ -156,7 +158,7 @@ export default function Pagos() {
                 <div className="hidden lg:block relative">
                   <DateInput
                     id="toDate"
-                    label="To:"
+                    label="a:"
                     value={toDate}
                     onChange={(e) => setToDate(e.target.value)}
                   />
@@ -169,7 +171,7 @@ export default function Pagos() {
                   }}
                   className="w-[20%]  font-inter font-[700] text-[15px] bg-[#8D6AFF] rounded-lg py-2 px-10 text-white"
                 >
-                  Aggiungere
+                  AGREGAR
                 </button>
               </div>
               <BenefitTable

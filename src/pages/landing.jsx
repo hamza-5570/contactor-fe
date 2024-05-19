@@ -8,41 +8,36 @@ import DeleteIcon from "../assets/png/delete-icon.png";
 import EditIcon from "../assets/png/edit-icon.png";
 import DateInput from "../component/dateInputWithClear";
 import { toast } from "react-toastify";
-import { t } from "i18next";
+import { ClipLoader } from "react-spinners";
 export default function Landing() {
   let navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
-  const [isFocused, setFocused] = useState(false);
-  const [dateValue, setDateValue] = useState("");
-
-  const handleFocus = () => setFocused(true);
-  const handleBlur = () => setFocused(dateValue.length !== 0);
 
   const onUpdate = async (id) => {
     navigate(`/addNew?id=${id}`);
   };
 
   const onDelete = async (id) => {
-    await axiosClient()
-      .delete(`/corporate/deleteCorporate/${id}`)
-      .then(async (res) => {
-        await setData(data.filter((item) => item._id !== id));
-        await setFilteredData(filteredData.filter((item) => item._id !== id));
-        toast.success(res.data.message);
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error(err.response.data.message);
-      });
+    if (window.confirm("Are you sure you want to delete this item?")) {
+      await axiosClient()
+        .delete(`/corporate/deleteCorporate/${id}`)
+        .then(async (res) => {
+          await setData(data.filter((item) => item._id !== id));
+          await setFilteredData(filteredData.filter((item) => item._id !== id));
+          toast.success(res.data.message);
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error(err.response.data.message);
+        });
+    }
   };
 
-  const handleSearch = (e) => {
-    console.log(e.target.value);
-  };
   useEffect(() => {
     axiosClient()
       .get("/corporate/getAllCorporate")
@@ -74,19 +69,19 @@ export default function Landing() {
 
   const columns = [
     {
-      Header: "IDENTITA",
+      Header: "IDENTIFICACIÓN",
       accessor: "_manualId", // This doesn't need to match any data property since it's manually generated
       Cell: ({ rowIndex }) => rowIndex + 1, // Ensure this uses `rowIndex`
     },
     ,
     { Header: "NOMBRE", accessor: "name" },
     { Header: "SSN OR EIN", accessor: "employer_identification_number" },
-    { Header: "INDIRIZZO POSTALE", accessor: "postal_address" },
+    { Header: "DIRECCIÓN", accessor: "postal_address" },
     { Header: "TELEFONO", accessor: "telephone" },
-    { Header: "DATA DI NASCITA", accessor: "date_of_birth" },
-    { Header: "TIPI", accessor: "types" },
+    { Header: "FECHA DE NACIMIENTO", accessor: "date_of_birth" },
+    { Header: "TIPO", accessor: "types" },
     {
-      Header: "AZIONE",
+      Header: "ACCIÓN",
       accessor: "actions",
       Cell: (row) => (
         <>
@@ -129,7 +124,7 @@ export default function Landing() {
                     type="text"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="ricerca per nome"
+                    placeholder="BUSCAR POR NOMBRE"
                     className="font-[500] font-inter text-[14px] text-[#BFBFBF] py-2 px-8 rounded-md"
                   />
                   <svg
@@ -150,7 +145,7 @@ export default function Landing() {
                 <div className="hidden lg:block relative">
                   <DateInput
                     id="fromDate"
-                    label="From:"
+                    label="de:"
                     value={fromDate}
                     onChange={(e) => setFromDate(e.target.value)}
                   />
@@ -158,7 +153,7 @@ export default function Landing() {
                 <div className="hidden lg:block relative">
                   <DateInput
                     id="toDate"
-                    label="To:"
+                    label="a:"
                     value={toDate}
                     onChange={(e) => setToDate(e.target.value)}
                   />
@@ -167,11 +162,22 @@ export default function Landing() {
                 <button
                   type="submit"
                   onClick={() => {
+                    setLoading(true);
                     navigate("/addNew");
+                    setLoading(false);
                   }}
-                  className="w-[20%]  font-inter font-[700] text-[15px] bg-[#8D6AFF] rounded-lg py-2 px-10 text-white"
+                  className="w-[20%] font-inter font-[700] text-[15px] bg-[#8D6AFF] rounded-lg py-2 px-10 text-white relative flex items-center justify-center"
+                  disabled={loading}
                 >
-                  Aggiungere
+                  {loading && (
+                    <ClipLoader
+                      size={20}
+                      color={"#ffffff"}
+                      loading={loading}
+                      className="absolute left-2"
+                    />
+                  )}
+                  <span className={loading ? "ml-6" : ""}>AGREGAR</span>
                 </button>
               </div>
               <BenefitTable

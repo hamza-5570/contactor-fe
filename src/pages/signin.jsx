@@ -5,9 +5,10 @@ import Lock from "../assets/svg/Icons.svg";
 import axiosClient from "../connection.jsx";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-
+import { ClipLoader } from "react-spinners";
 export default function Signin() {
   let navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({ email: "", password: "" });
 
   const handleChange = (event) => {
@@ -15,16 +16,18 @@ export default function Signin() {
     setUser({ ...user, [name]: value });
   };
   const handleSubmit = async (event) => {
+    setLoading(true);
     event.preventDefault();
     axiosClient()
       .post("/user/userLogin", user)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
         toast.success(res.data.message);
+        setLoading(true);
         navigate("/Dashboard");
       })
       .catch((err) => {
-        toast.success(err.response.data.message);
+        toast.error(err.response.data.message);
       });
   };
 
@@ -41,7 +44,7 @@ export default function Signin() {
           <div className="bg-white  rounded-xl  md:w-[80%] lg:w-[50%] 2xl:w-[30%] mx-auto py-10 my-5">
             <p className="font-inter font-[700] text-[20px] md:text-[30px] text-black text-center">
               {/* Login */}
-              Connectez-vous
+              ACCESO
             </p>
             <form className="w-[90%] mx-auto mt-10">
               <div className="relative">
@@ -73,22 +76,27 @@ export default function Signin() {
                   <input type="checkbox" />
                   <p className="font-inter font-[400] text-[#1C1C1E] text-[10px] md:text-[14px]">
                     {/* Remember Me */}
-                    souvenez-vous de moi
+                    Acuérdate de mí
                   </p>
                 </div>
-                <p className="font-inter font-[600] text-[#0049FC] text-[10px] md:text-[14px]">
-                  {/* Forget Password? */}
-                  Mot de passe oublié
-                </p>
               </div>
-              <button
-                // onClick={() => handleNavigate("/CONTRATISTAS/SUPLIDORES")}
-                onClick={handleSubmit}
-                className="mt-10 font-inter font-[400]  text-[16px] text-white rounded-md bg-[#0049FC] w-full p-2"
-              >
-                {/* Login */}
-                Connectez-vous
-              </button>
+              <div className="flex items-center justify-center">
+                <button
+                  onClick={handleSubmit}
+                  className="relative mt-10 font-inter font-[400] text-[16px] text-white rounded-md bg-[#0049FC] w-full p-2"
+                  disabled={loading}
+                >
+                  {loading && (
+                    <ClipLoader
+                      size={20}
+                      color={"#ffffff"}
+                      loading={loading}
+                      className="absolute left-1/2 transform -translate-x-1/2"
+                    />
+                  )}
+                  <span className={loading ? "opacity-0" : ""}>ACCESO</span>
+                </button>
+              </div>
             </form>
           </div>
         </div>

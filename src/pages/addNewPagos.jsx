@@ -4,9 +4,10 @@ import Navbar from "../component/navbar";
 import { useLocation, useNavigate } from "react-router-dom";
 import axiosClient from "../connection";
 import { toast } from "react-toastify";
-
+import { ClipLoader } from "react-spinners";
 export default function AddNew() {
   let navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const id = queryParams.get("id");
@@ -21,7 +22,7 @@ export default function AddNew() {
     corporate: "",
   });
   const [dropdownTouched, setDropdownTouched] = useState(false);
-  console.log("==================>", payment.corporate);
+
   const [corporates, setCorporates] = useState([
     {
       name: "",
@@ -42,16 +43,19 @@ export default function AddNew() {
   };
 
   const handleSubmit = async (event) => {
+    setLoading(true);
     event.preventDefault();
     if (id) {
       axiosClient()
         .put(`/pagos/updatePayment/${id}`, payment)
         .then((res) => {
           toast.success(res.data.message);
+          setLoading(false);
           navigate("/Pagos");
         })
         .catch((err) => {
           console.log(err);
+          setLoading(false);
           toast.error(err.response.data.message);
         });
     } else {
@@ -60,10 +64,12 @@ export default function AddNew() {
         .then((res) => {
           console.log(res);
           toast.success(res.data.message);
+          setLoading(false);
           navigate("/Pagos");
         })
         .catch((err) => {
           console.log(err);
+          setLoading(false);
           toast.error(err.response.data.message);
         });
     }
@@ -246,9 +252,17 @@ export default function AddNew() {
                     <button
                       type="submit"
                       onClick={handleSubmit}
-                      className="mt-5 md:mt-8 font-inter font-[700] text-[15px] bg-[#8D6AFF] rounded-lg py-2 px-10 block ml-auto text-white"
+                      className="mt-5 md:mt-8 font-inter font-[700] text-[15px] bg-[#8D6AFF] rounded-lg py-2 px-10 block ml-auto text-white relative flex items-center justify-center"
+                      disabled={loading}
                     >
-                      Entregar
+                      {loading && (
+                        <ClipLoader
+                          size={20}
+                          color={"#ffffff"}
+                          loading={loading}
+                        />
+                      )}
+                      <span className={loading ? "ml-2" : ""}>Entregar</span>
                     </button>
                   </div>
                 </div>

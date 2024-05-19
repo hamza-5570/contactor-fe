@@ -76,7 +76,7 @@ export default function Landing() {
 
   const column = [
     {
-      Header: "IDENTITA",
+      Header: "IDENTIFICACIÓN",
       accessor: "_manualId", // This doesn't need to match any data property since it's manually generated
       Cell: ({ rowIndex }) => rowIndex + 1, // Ensure this uses `rowIndex`
     },
@@ -93,7 +93,7 @@ export default function Landing() {
       Header: "RETENCION DE SERVICIOS PRESTADOS",
       accessor: "retention_professional_services",
     },
-    { Header: "GROSS PAY RETENTION", accessor: "net_pay" },
+    { Header: "SALARIO NETO", accessor: "net_pay" },
     { Header: "GASTOS REEMBOLSADOS", accessor: "reimbursable_expenses" },
     { Header: "DIVIDENDOS", accessor: "dividens" },
     { Header: "RETENCIÓN DE DIVIDENDOS", accessor: "dividens_retention" },
@@ -102,17 +102,17 @@ export default function Landing() {
 
   const columns = [
     {
-      Header: "IDENTITA",
+      Header: "IDENTIFICACIÓN",
       accessor: "_manualId", // This doesn't need to match any data property since it's manually generated
       Cell: ({ rowIndex }) => rowIndex + 1, // Ensure this uses `rowIndex`
     },
     ,
     { Header: "NOMBRE", accessor: "name" },
     { Header: "SSN OR EIN", accessor: "employer_identification_number" },
-    { Header: "INDIRIZZO POSTALE", accessor: "postal_address" },
+    { Header: "DIRECCIÓN", accessor: "postal_address" },
     { Header: "TELEFONO", accessor: "telephone" },
-    { Header: "DATA DI NASCITA", accessor: "date_of_birth" },
-    { Header: "TIPI", accessor: "types" },
+    { Header: "FECHA DE NACIMIENTO", accessor: "date_of_birth" },
+    { Header: "TIPO", accessor: "types" },
   ];
 
   return (
@@ -135,7 +135,7 @@ export default function Landing() {
                       type="text"
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      placeholder="ricerca per nome"
+                      placeholder="BUSCAR POR NOMBRE"
                       className="font-[500] font-inter text-[14px] text-[#BFBFBF] py-2 px-8 rounded-md"
                     />
                     <svg
@@ -156,7 +156,7 @@ export default function Landing() {
                   <div className="hidden lg:block relative">
                     <DateInput
                       id="fromDate"
-                      label="From:"
+                      label="de:"
                       value={fromDate}
                       onChange={(e) => setFromDate(e.target.value)}
                     />
@@ -164,7 +164,7 @@ export default function Landing() {
                   <div className="hidden lg:block relative">
                     <DateInput
                       id="toDate"
-                      label="To:"
+                      label="a:"
                       value={toDate}
                       onChange={(e) => setToDate(e.target.value)}
                     />
@@ -183,7 +183,7 @@ export default function Landing() {
                     type="text"
                     value={searchTerm2}
                     onChange={(e) => setSearchTerm2(e.target.value)}
-                    placeholder="ricerca per nome"
+                    placeholder="BUSCAR POR NOMBRE"
                     className="font-[500] font-inter text-[14px] text-[#BFBFBF] py-2 px-8 rounded-md"
                   />
                   <svg
@@ -204,7 +204,7 @@ export default function Landing() {
                 <div className="hidden lg:block relative">
                   <DateInput
                     id="fromDate"
-                    label="From:"
+                    label="de:"
                     value={fromDate2}
                     onChange={(e) => setFromDate2(e.target.value)}
                   />
@@ -212,7 +212,7 @@ export default function Landing() {
                 <div className="hidden lg:block relative">
                   <DateInput
                     id="toDate"
-                    label="To:"
+                    label="a:"
                     value={toDate2}
                     onChange={(e) => setToDate2(e.target.value)}
                   />
