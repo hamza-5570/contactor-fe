@@ -131,7 +131,7 @@ export default function AddNew() {
                       {/* Always show this placeholder until a valid selection is made */}
                       {(!payment.corporate || payment.corporate === "") && (
                         <option value="" disabled hidden>
-                          CORPORACION O INDIVIDUO
+                          SELECCIONAR NOMBRE
                         </option>
                       )}
                       {corporates?.map((corporate) => (
@@ -152,7 +152,7 @@ export default function AddNew() {
                       value={payment.professional_services_payment}
                       name="professional_services_payment"
                       onChange={handleChange}
-                      placeholder="por favor ingrese 9 dígitos                    "
+                      placeholder="PAGO DE SERVICIOS PRESTADOS"
                       className="w-full p-2 mt-2 text-base font-normal text-gray-700 bg-white border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 focus:ring-1 focus:ring-purple-600"
                     />
                   </div>
@@ -167,14 +167,14 @@ export default function AddNew() {
                       value={payment.retention_professional_services}
                       name="retention_professional_services"
                       onChange={handleChange}
-                      placeholder=" ingresa tu dirección"
+                      placeholder="RETENCION DE SERVICIOS PRESTADOS"
                       className="w-full p-2 mt-2 text-base font-normal text-gray-700 bg-white border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 focus:ring-1 focus:ring-purple-600"
                     />
                   </div>
 
                   <div className="md:mt-5">
                     <p className="font-inter font-[700] text-[15px] ">
-                      GROSS PAY RETENTION
+                      SALARIO NETO
                     </p>
                     <input
                       required
@@ -182,7 +182,7 @@ export default function AddNew() {
                       value={payment.net_pay}
                       name="net_pay"
                       onChange={handleChange}
-                      placeholder="FECHA DE NACIMIENTO"
+                      placeholder="SALARIO NETO"
                       className="w-full p-2 mt-2 text-base font-normal text-gray-700 bg-white border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 focus:ring-1 focus:ring-purple-600"
                     />
                   </div>
@@ -197,7 +197,7 @@ export default function AddNew() {
                       name="reimbursable_expenses"
                       value={payment.reimbursable_expenses}
                       onChange={handleChange}
-                      placeholder="ingresa número telefónico"
+                      placeholder="GASTOS REEMBOLSADOS"
                       className="w-full p-2 mt-2 text-base font-normal text-gray-700 bg-white border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 focus:ring-1 focus:ring-purple-600"
                     />
                   </div>
@@ -212,7 +212,7 @@ export default function AddNew() {
                       value={payment.dividens}
                       name="dividens"
                       onChange={handleChange}
-                      placeholder="CORPORACION O INDIVIDUO"
+                      placeholder="DIVIDENDOS"
                       className="w-full p-2 mt-2 text-base font-normal text-gray-700 bg-white border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 focus:ring-1 focus:ring-purple-600"
                     />
                   </div>
@@ -227,7 +227,7 @@ export default function AddNew() {
                       name="dividens_retention"
                       value={payment.dividens_retention}
                       onChange={handleChange}
-                      placeholder="ingresa número telefónico"
+                      placeholder="RETENCIÓN DE DIVIDENDOS"
                       className="w-full p-2 mt-2 text-base font-normal text-gray-700 bg-white border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 focus:ring-1 focus:ring-purple-600"
                     />
                   </div>
@@ -242,7 +242,7 @@ export default function AddNew() {
                       value={payment.other_payments}
                       name="other_payments"
                       onChange={handleChange}
-                      placeholder="CORPORACION O INDIVIDUO"
+                      placeholder="OTROS PAGOS"
                       className="w-full p-2 mt-2 text-base font-normal text-gray-700 bg-white border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 focus:ring-1 focus:ring-purple-600"
                     />
                   </div>
