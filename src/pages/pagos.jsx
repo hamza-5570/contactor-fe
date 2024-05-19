@@ -20,7 +20,9 @@ export default function Pagos() {
   };
 
   const onDelete = async (id) => {
-    if (window.confirm("Are you sure you want to delete this item?")) {
+    if (
+      window.confirm("¿Estás seguro de que quieres eliminar este artículo?")
+    ) {
       axiosClient()
         .delete(`/pagos/deletePayment/${id}`)
         .then(async (res) => {

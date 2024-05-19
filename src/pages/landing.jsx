@@ -23,7 +23,9 @@ export default function Landing() {
   };
 
   const onDelete = async (id) => {
-    if (window.confirm("Are you sure you want to delete this item?")) {
+    if (
+      window.confirm("¿Estás seguro de que quieres eliminar este artículo?")
+    ) {
       await axiosClient()
         .delete(`/corporate/deleteCorporate/${id}`)
         .then(async (res) => {
