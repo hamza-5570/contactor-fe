@@ -120,7 +120,7 @@ export default function Navbar() {
                         </p>
 
                         <p
-                          onClick={() => handleNavigate("/Dashboard")}
+                          onClick={() => handleNavigate("/Panel")}
                           className="mt-10 flex cursor-pointer gap-2 font-[500] text-[15px]  text-white"
                         >
                           CONTRATISTAS/SUPLIDORES

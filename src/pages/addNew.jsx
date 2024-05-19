@@ -34,12 +34,12 @@ export default function AddNew() {
         .then((res) => {
           toast.success(res.data.message);
           setLoading(false);
-          navigate("/Dashboard");
+          navigate("/Panel");
         })
         .catch((err) => {
           toast.error(err.response.data.message);
           setLoading(false);
-          navigate("/Dashboard");
+          navigate("/Panel");
         });
     } else {
       axiosClient()
@@ -47,12 +47,12 @@ export default function AddNew() {
         .then((res) => {
           toast.success(res.data.message);
           setLoading(false);
-          navigate("/Dashboard");
+          navigate("/Panel");
         })
         .catch((err) => {
           toast.error(err.response.data.message);
           setLoading(false);
-          navigate("/Dashboard");
+          navigate("/Panel");
         });
     }
   };

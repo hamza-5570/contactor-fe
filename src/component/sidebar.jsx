@@ -23,7 +23,7 @@ export default function Sidebar() {
 
         <div className="xl:pl-5  mt-14 xl:mt-14">
           <p
-            onClick={() => handleNavigate("/Dashboard")}
+            onClick={() => handleNavigate("/Panel")}
             className="flex cursor-pointer gap-2 font-[500] text-[10px] xl:text-[13px] text-white hover:text-[#8D6AFF] hover:bg-white p-4 rounded-l-full"
           >
             CONTRATISTAS / SUPLIDORES

@@ -9,11 +9,11 @@ function Breadcrumbs() {
     <nav className="px-5 py-3 text-white">
       <ol className="list-reset flex">
         <li>
-          <Link to="/Dashboard" className="text-white hover:text-gray-300">
-            Dashboard
+          <Link to="/Panel" className="text-white hover:text-gray-300">
+            Panel
           </Link>
         </li>
-        {pathnames.length > 0 && pathnames[0] !== "Dashboard" && (
+        {pathnames.length > 0 && pathnames[0] !== "Panel" && (
           <>
             <span className="mx-2">/</span>
             <li>

@@ -24,7 +24,7 @@ export default function Signin() {
         localStorage.setItem("token", res.data.token);
         toast.success(res.data.message);
         setLoading(true);
-        navigate("/Dashboard");
+        navigate("/Panel");
       })
       .catch((err) => {
         toast.error(err.response.data.message);
